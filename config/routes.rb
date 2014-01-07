@@ -12,4 +12,17 @@ Puttputthooray::Application.routes.draw do
     end
   end
   root 'profile#show'
+  
+  resources :courses do
+    collection do
+      get 'find'
+      get 'find_by_state'
+      get 'find_by_college'
+      get :autocomplete_golf_facility_company
+      get :autocomplete_college_name
+    end
+    member do
+      post 'suggest'
+    end
+  end
 end
