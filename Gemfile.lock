@@ -5,6 +5,14 @@ GIT
     rolify (3.3.0.rc5)
 
 GIT
+  remote: https://github.com/bernat/best_in_place
+  revision: df178520bf9ba405baee9528d5dbb630d6ff760c
+  specs:
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (>= 3.1)
+
+GIT
   remote: https://github.com/crowdint/rails3-jquery-autocomplete
   revision: 1b7cdfb6a31fad9ba0ade990d0b6a609306cee5a
   specs:
@@ -153,6 +161,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  best_in_place!
   bootstrap-sass!
   carrierwave
   coffee-rails (~> 4.0.0)

@@ -46,6 +46,7 @@ gem 'rails3-jquery-autocomplete', git: 'https://github.com/crowdint/rails3-jquer
 gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass'#, branch: '3'
 
 gem 'jquery-ui-rails'
+gem 'best_in_place', git: 'https://github.com/bernat/best_in_place'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

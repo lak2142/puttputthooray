@@ -12,7 +12,23 @@ Puttputthooray::Application.routes.draw do
     end
   end
   root 'profile#show'
-  
+  namespace :admin do
+    resources :colleges
+    resources :courses
+  end
+
+  resources :admin do
+    member do
+      put :change_role
+      get :shadow_user
+    end
+
+    collection do
+      get :members
+      get :stop_shadow_user
+      get :search
+    end
+  end
   resources :courses do
     collection do
       get 'find'
