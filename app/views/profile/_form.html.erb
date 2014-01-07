@@ -1,0 +1,103 @@
+<% url ||= profile_index_path %>
+<% hide_remove_avatar ||= false %>
+<% if @user_profile.errors.any? %>
+  <div class="alert alert-danger" id="error_explanation">
+    <h2>Please fix the errors below and try again</h2>
+    <ul>
+    <% @user_profile.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-group row">
+  <%= label_tag :email, 'Email', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-3">
+    <%= current_user.email %>
+  </div>
+</div>
+
+<%= form_for(@user_profile, url: url, class: 'form-horizontal') do |f| %>
+  <div class="form-group row">
+    <%= f.label :first_name, 'First Name', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :last_name, 'Last Name', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :birthdate, 'Birthdate', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :birthdate, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :gender, 'Gender', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <label class"radio-inline">Male&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= f.radio_button :gender, :male, class: 'radio-inline' %></label>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <label class"radio-inline">Female&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= f.radio_button :gender, :female, class: 'radio-inline' %></label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :university, 'University', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.autocomplete_field :university, autocomplete_college_name_courses_path, placeholder: 'start typing ...', class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :graduation_year, 'Graduation Year', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.select :graduation_year, (2013..2025), {}, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :hometown, 'Hometown', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :hometown, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :major, 'Major', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :major, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :phone, 'Phone', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :phone, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :avatar, 'Profile Photo', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= image_tag(@user_profile.avatar_url) if @user_profile.avatar? %>
+      <%= f.file_field :avatar %>
+      <% unless hide_remove_avatar %>
+        Remove Avatar <%= f.check_box :remove_avatar %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.submit 'Save Profile', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+<% content_for(:javascript) do %>
+  <script>
+    $('#user_profile_birthdate').datepicker({
+      changeMonth: true,
+      changeYear: true,
+      defaultDate: new Date(1985, 00, 01),
+      yearRange: '1980:2000',
+      dateFormat: 'yy-mm-dd'
+    });
+  </script>
+
+<% end %>

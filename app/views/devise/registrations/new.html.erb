@@ -1,0 +1,19 @@
+<% if @user_type == "course_owner" %>
+  <h3>Course Owner Signup</h3>
+<% else %>
+  <h3>Member Signup</h3>
+<% end %>
+
+<div class="row container">
+  <%= render :partial => 'signup_form' %>
+  <div class="col-md-8">
+    <% if @user_type == "course_owner" %>
+      <h4>Course owner portal will allow you to set and manage rates and let's you host tournaments.</h4>
+    <% else %>
+      <h4>Player profile is a one stop shop for everything you need as a college golfer.</h4>
+      <li>Access golf discounts</li>
+      <li>Join NCCGA events</li>
+      <li>Fundraise and more.</li>
+    <% end %>
+  </div>
+</div>

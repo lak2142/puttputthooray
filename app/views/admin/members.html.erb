@@ -1,0 +1,52 @@
+<%= javascript_include_tag 'admin' %>
+<%= stylesheet_link_tag 'admin' %>
+<div class="col-md-2 sidenav">
+  <li><%= link_to "Add member", add_user_profile_index_path, id: 'add-member-link' %></li>
+  <li><%= link_to "View members", members_admin_index_path %></li>
+</div>
+<div class="col-md-10">
+  <h2>Members</h2>
+  <div class="row nxtform">
+    <%= form_tag(search_admin_index_path, method: :get, id: 'search-member', class: 'form-inline search-form') do %>
+      <div class="form-group col-md-3">
+        <%= text_field_tag 'email', nil, type: "email", class: "form-control", id: "email", placeholder: "Search by email address" %>
+      </div>
+      <%= submit_tag 'Search', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Created</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <%= paginate @users %>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.email, profile_path(user.id) %></td>
+          <td><%= best_in_place user, :role_type_id, type: :select, collection: RoleType.all.map{|a| [a.id, a.code]}, path: change_role_admin_path(user) %></td>
+          <td><%= user.created_at.to_date.to_s(:simple_date) %></td>
+          <td><% if user.confirmed_at %><%= link_to 'Shadow', shadow_user_admin_path(user) %><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if @users.empty? %>No results found <% end %>
+<% content_for :javascript do %>
+  <script>
+  $(document).ready(function() {
+    jQuery(".best_in_place").best_in_place();
+    $("#add-member-link").click(function() {
+      $("#add-member").toggle();
+    })
+  });
+  </script>
+<% end %>

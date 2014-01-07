@@ -1,0 +1,33 @@
+<h2>Login</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="form-group login-form">
+    <%= f.label :email%>
+    <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group login-form">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control'  %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div class="form-group"><%= f.submit "Login", class: 'btn btn-primary col-sm-2' %></div>
+<% end %>
+
+<br/>
+
+<div class="row login-links">
+Not registered? <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_registration_path(resource_name) %>
+<% end -%>
+</div>
+
+<div class="row login-links">
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+<% end -%>
+</div>

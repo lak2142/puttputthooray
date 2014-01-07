@@ -1,0 +1,48 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+@import "bootstrap";
+@import "bootstrap/theme";
+
+.field_with_errors {
+  @extend .has-error;
+}
+
+body {
+  padding-top: 80px;
+  background: #f7f7f7;
+}
+
+.login-form {
+  width: 20em;
+}
+
+.login-links {
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+.sidenav {
+  background: #D4D1C4;
+  border-radius: 4px 4px 4px 4px;
+  margin-top: 5%;
+}
+
+.sidenav a {
+  color: #2F2D22;
+}
+
+.sidenav li {
+  list-style: none;
+  padding: 0.5em;
+}
