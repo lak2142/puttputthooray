@@ -2,34 +2,40 @@ require 'spec_helper'
 
 feature 'admin creates a Team' do
   let(:admin) { FactoryGirl.create(:admin) }
+  let!(:college) { FactoryGirl.create(:college, name: 'Boston College')}
+
   scenario 'admin creates new team' do
+    president_email = 'johnthepresident@watson.com'
+    ActionMailer::Base.deliveries = []
     sign_in_as(admin)
-    click_link 'Approve New Team'
+    user_profile = FactoryGirl.create(:user_profile, user: admin)
+    visit teams_path
+    click_on 'Create New Team'
     select 'Boston College', from: 'College'
-    fill_in 'First name', with: 'John'
-    fill_in "Last name", with: 'Watson'
-    fill_in 'Email', with: 'john@watson.com'
-    click_link 'Submit'
-    expect(page).to have_content('Invite sent to john@watson.com')
-    expect(page).to have_content('Approve New Team')
+    fill_in 'Email', with: president_email
+    fill_in 'Team name', with: 'Boston Swingers'
+    click_on 'Submit'
+    invite = ActionMailer::Base.deliveries.last
+    expect(invite.to).to include(president_email)
+    user = User.find_by(email: president_email)
+    expect(Team.last.users).to include(user)
+    expect(user.has_president_privilege?).to be_true
   end
 
   scenario 'admin submits invalid information' do
     visit '/'
-    admin_sign_in
-    click_link 'Approve New Team'
-    click_link 'Submit'
+    sign_in_as(admin)
+    visit teams_path
+    click_on 'Create New Team'
+    click_on 'Submit'
     expect(page).to_not have_content('Invite sent')
-    within ".input.new_team_college" do
+    within ".input.team_college" do
       expect(page).to have_content "can't be blank"
     end
-    within ".input.new_team_first_name" do
+    within ".input.team_team_name" do
       expect(page).to have_content "can't be blank"
     end
-    within ".input.new_team_last_name" do
-      expect(page).to have_content "can't be blank"
-    end
-    within ".input.new_team_email" do
+    within ".input.team_email" do
       expect(page).to have_content "can't be blank"
     end
   end

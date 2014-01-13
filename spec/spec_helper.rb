@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
 require 'valid_attribute'
+require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -29,6 +30,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     Seeders::RoleTypes.seed
   end
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
