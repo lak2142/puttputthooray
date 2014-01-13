@@ -10,3 +10,4 @@ require 'csv'
 CSV.foreach("db/colleges_lat_lng.csv") do |college|
   College.create(name: college[0], address: college[1], city: college[2], state: college[3], zip_code: college[4], website: college[5], lat: college[6], lon: college[7])
 end
+
