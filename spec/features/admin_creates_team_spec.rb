@@ -8,6 +8,7 @@ feature 'admin creates a Team' do
     president_email = 'johnthepresident@watson.com'
     ActionMailer::Base.deliveries = []
     sign_in_as(admin)
+    user_profile = FactoryGirl.create(:user_profile, user: admin)
     visit teams_path
     click_on 'Create New Team'
     select 'Boston College', from: 'College'
@@ -27,7 +28,6 @@ feature 'admin creates a Team' do
     visit teams_path
     click_on 'Create New Team'
     click_on 'Submit'
-    save_and_open_page
     expect(page).to_not have_content('Invite sent')
     within ".input.team_college" do
       expect(page).to have_content "can't be blank"

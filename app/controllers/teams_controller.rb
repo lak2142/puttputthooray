@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
     if @team.save
       user.team = @team
       user.save
-      redirect_to root_path
+      redirect_to admin_index_path, notice: 'Team successfully added!'
     else
       render :new
     end

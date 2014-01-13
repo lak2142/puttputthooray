@@ -1,6 +1,11 @@
 class AdminController < AppController
   before_action :admin_only, :except => [:stop_shadow_user]
-  skip_before_action :redirect_if_profile_incomplete, :only => [:stop_shadow_user] 
+  skip_before_action :redirect_if_profile_incomplete, :only => [:stop_shadow_user]
+
+  def index
+    @users = User.all
+  end
+
   def members
     @users = User.page(params[:page])
   end
