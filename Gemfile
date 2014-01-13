@@ -42,6 +42,8 @@ group :development, :test do
   gem "capybara"
   gem "launchy"
   gem "pry-rails"
+  gem "spring"
+  gem 'email_spec'
 end
 # Gems from NextGenGolf
 gem 'carrierwave'
