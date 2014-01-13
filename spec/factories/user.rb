@@ -9,6 +9,10 @@ FactoryGirl.define do
       end
     end
 
+    # factory :invited_user do
+    #   sequence(:email) {|n| "dude#{n}@something.com"}
+    #   invitation_token '5a50e9e0975f29d83432c15ac23f24502ee1a959fe3d953c77cecedb38bc68d0'
+    # end
   end
   factory :user_profile do
     first_name 'john'
@@ -22,4 +26,5 @@ FactoryGirl.define do
     phone '1234567891'
     user
   end
+
 end

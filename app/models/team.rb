@@ -5,7 +5,6 @@ class Team < ActiveRecord::Base
     inverse_of: :team
   validates_presence_of :team_name
   validates_presence_of :college
-  validates_presence_of :email
 
   attr_accessor :email
 end
