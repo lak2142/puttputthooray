@@ -13,11 +13,12 @@ class TeamsController < ApplicationController
 
     @team = Team.new(team_params)
 
-    if @team.save
+    if @team.valid? && user.valid?
       user.team = @team
       user.save
       redirect_to admin_index_path, notice: 'Team successfully added!'
     else
+      @team.errors[:email] = "Must provide valid email for President" unless user.valid?
       render :new
     end
   end

@@ -9,24 +9,26 @@ feature "Team pres creates team profile" do
     user = FactoryGirl.create(:user)
     user.team = team
     user.add_role RoleType.PRESIDENT.code
+    user.save
     sign_in_as(user)
 
     expect(page).to have_content("Profile")
 
-    fill_in "First Name", with: user.first_name
-    fill_in "Last Name", with: user.last_name
-    fill_in "Birthdate", with: user.birthdate
-    select user.gender, from: "Gender"
-    fill_in "University", with: user.university
-    select user.graduation_year, from: "Graduation Year"
-    fill_in "Hometown", with: user.hometown
-    fill_in "Major", with: user.major
-    fill_in "Phone", with: user.phone
+    fill_in "First Name", with: 'bob'
+    fill_in "Last Name", with: 'bobson'
+    fill_in "Birthdate", with: Time.now - 10.years
+    choose "Male"
+    fill_in "University", with: "Boston U"
+    select "2020", from: "Graduation Year"
+    fill_in "Hometown", with: "Bangor"
+    fill_in "Major", with: "Basketweaving"
+    fill_in "Phone", with: "222-222-2222"
 
     click_on "Save Profile"
 
     expect(page).to have_content("Your profile was created successfully")
-
+    visit root_path
+    save_and_open_page
     expect(page).to have_content("Edit Team")
 
     fill_in "Team Name", with: team.team_name

@@ -7,4 +7,10 @@ class Team < ActiveRecord::Base
   validates_presence_of :college
 
   attr_accessor :email
+
+  # test this
+
+  def incomplete?
+    true
+  end
 end
