@@ -28,7 +28,9 @@ feature 'admin creates a Team' do
     visit teams_path
     click_on 'Create New Team'
     click_on 'Submit'
+    save_and_open_page
     expect(page).to_not have_content('Invite sent')
+    expect(page).to have_content('Must provide valid email for President')
     within ".input.team_college" do
       expect(page).to have_content "can't be blank"
     end
@@ -36,7 +38,7 @@ feature 'admin creates a Team' do
       expect(page).to have_content "can't be blank"
     end
     within ".input.team_email" do
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Must provide valid email for President"
     end
   end
 
