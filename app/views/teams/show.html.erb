@@ -10,8 +10,9 @@
     <h3> Team Members </h3>
       <% @team.users.each do |user| %>
         <% unless user.user_profile.nil? %>
-          <%= user.user_profile.first_name %>
-          <%=user.user_profile.last_name %>
+          <%= link_to "#{user.user_profile.first_name}
+          #{user.user_profile.last_name}", profile_path(user) %>
+          <%= link_to "remove member", update_team_membership_path(member_id: user.id), method: :put %>
         <% end %>
       <% end %>
   </div>
@@ -30,31 +31,14 @@
     <h3>Invited Members</h3>
     <% @team.users.each do |member|%>
       <div id=<%=member.id%> >
-        <%= member.email %>
-        <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put %>
+        <% unless member.user_profile.present? %>
+          <%= member.email %>
+          <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put %>
+        <% end %>
       </div>
       </br>
     <% end %>
   </div>
-<h3>Add Team Member</h3>
-<div class="row form-group nxtform" id='add-member'>
-  <%= form_tag(add_user_profile_index_path) do %>
-    <div class="col-md-4">
-      <div class="form-group"><%= text_field_tag 'email', nil, type: "email", class: "form-control", id: "email", placeholder: "Enter email address" %></div>
-      <div class="form-group"><%= hidden_field_tag(:role_type_id, RoleType.MEMBER.id) %></div>
-      <div class="form-group"><%= hidden_field_tag(:team_id, @team.id) %></div>
-      <%= submit_tag 'Invite Team Member', class: 'col-sm-6 btn btn-primary form-group' %>
-    </div>
-  <% end %>
 </div>
 
-<div>
-  <h3>Invited Members</h3>
-  <% @team.users.each do |member|%>
-    <div id=<%=member.id%> >
-      <%= member.email %>
-      <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put if @team.president?(current_user) %>
-    </div>
-    </br>
-  <% end %>
-</div>
+
