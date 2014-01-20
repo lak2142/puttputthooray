@@ -2,6 +2,8 @@ class AppController < ApplicationController
   before_action :authenticate_user!
 
   before_action :redirect_if_profile_incomplete
+  before_action :redirect_if_team_incomplete
+
 
   private
 
@@ -22,6 +24,13 @@ class AppController < ApplicationController
     unless current_user.profile_complete?
       flash[:alert] = "Please complete your profile"
       redirect_to root_path
+    end
+  end
+
+  def redirect_if_team_incomplete
+    if current_user.profile_complete? && current_user.has_president_privilege? && current_user.team.try(:incomplete?)
+      flash[:alert] = "Please complete your team"
+      redirect_to team_path(current_user.team)
     end
   end
 

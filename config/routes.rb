@@ -2,7 +2,7 @@ Puttputthooray::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get 'profile/my_profile' => "profile#my_profile"
-  
+
   resources :profile do
     collection do
       get :add_user
@@ -16,6 +16,8 @@ Puttputthooray::Application.routes.draw do
     resources :colleges
     resources :courses
   end
+
+  resources :teams
 
   resources :admin do
     member do

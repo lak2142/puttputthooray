@@ -1,0 +1,6 @@
+<%= simple_form_for @team do |f| %>
+  <%= f.association :college, as: :select, collection: College.all %>
+  <%= f.input :email %>
+  <%= f.input :team_name %>
+  <%= f.submit 'Submit' %>
+<% end %>

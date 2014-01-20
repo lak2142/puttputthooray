@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_one :course_owner_profile
   has_many :owner_courses
 
+  belongs_to :team
+
   def role
     roles.present? ? roles.first.name : RoleType.MEMBER.code
   end
