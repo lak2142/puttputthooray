@@ -10,6 +10,10 @@ class TeamLogoUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
+  if Rails.env.development?
+    storage :file
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -45,7 +49,7 @@ class TeamLogoUploader < CarrierWave::Uploader::Base
 
 
   def default_url
-    "/app/assets/images/default_photo.jpg"
+    "default_photo.jpg"
   end
 
   # Override the filename of the uploaded files:

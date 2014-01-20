@@ -1,9 +1,9 @@
 <%= link_to 'Create New Team', new_team_path %>
 
 
-<h3>Teams already invited</h3>
+<h1>Teams already invited</h1>
 <% @teams.each do |team| %>
-  <%= team.college.name %> - <%= team.team_name %><br />
+ <h3> <%= team.college.name %> - <%= link_to "#{team.team_name}", team_path(team) %> </h3><br />
   <%= image_tag team.team_logo_url %><br />
 <% end %>
 
