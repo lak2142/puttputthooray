@@ -4,5 +4,6 @@
 <h3>Teams already invited</h3>
 <% @teams.each do |team| %>
   <%= team.college.name %> - <%= team.team_name %><br />
+  <%= image_tag team.team_logo_url %><br />
 <% end %>
 
