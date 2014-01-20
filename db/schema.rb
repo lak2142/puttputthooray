@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140120170126) do
-=======
-ActiveRecord::Schema.define(version: 20140120163333) do
->>>>>>> b7e262c10f2c67fb34135c5dd9f7a36e3536cef1
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,11 +54,8 @@ ActiveRecord::Schema.define(version: 20140120163333) do
     t.integer  "college_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-    t.string   "team_logo"
-=======
     t.text     "recognition"
->>>>>>> b7e262c10f2c67fb34135c5dd9f7a36e3536cef1
+    t.string   "team_logo"
   end
 
   create_table "user_profiles", force: true do |t|
