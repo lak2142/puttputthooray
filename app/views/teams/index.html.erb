@@ -1,1 +1,8 @@
 <%= link_to 'Create New Team', new_team_path %>
+
+
+<h3>Teams already invited</h3>
+<% @teams.each do |team| %>
+  <%= team.team_name %><br />
+<% end %>
+
