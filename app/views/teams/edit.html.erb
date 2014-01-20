@@ -1,15 +1,20 @@
 <h1>Edit Team</h1>
 
-<%= simple_form_for @team, html:{class: "form-horizontal"} do |f|%>
+<%= form_for(@team, class: "form-horizontal") do |f|%>
   <div class="form-group row">
-  <%=f.input :team_name, label: "Team Name" %>
+    <%= f.label :team_logo, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%=f.file_field :team_logo, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :recognition, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%=f.text_area :recognition, class: "form-control" %>
+    </div>
   </div>
   <div class = "form-group row">
-  <%=f.input :team_logo, as: :file %>
+    <%=f.submit "Submit" %>
   </div>
-  <div class = "form-group row">
-  <%=f.input :recognition, label: "Recognition" %>
-  </div>
-  <div class = "form-group row">
-  <%=f.submit "Submit"%>
 <% end %>
+
