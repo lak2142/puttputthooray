@@ -29,8 +29,9 @@ class AppController < ApplicationController
 
   def redirect_if_team_incomplete
     if current_user.profile_complete? && current_user.has_president_privilege? && current_user.team.try(:incomplete?)
+      flash.keep
       flash[:alert] = "Please complete your team"
-      redirect_to edit_team_path(current_user.team)
+      redirect_to team_path(current_user.team)
     end
   end
 

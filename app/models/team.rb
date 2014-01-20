@@ -9,11 +9,22 @@ class Team < ActiveRecord::Base
   attr_accessor :email
 
   mount_uploader :team_logo, TeamLogoUploader
+<<<<<<< HEAD
 
   # test this
+=======
+>>>>>>> delete_player
 
   def incomplete?
-    true
+    # must add atleast one member
+    users.length <= 1
   end
 
+<<<<<<< HEAD
+=======
+  def president?(user)
+    user.team == self && user.has_president_privilege?
+  end
+
+>>>>>>> delete_player
 end

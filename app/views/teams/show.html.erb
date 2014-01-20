@@ -1,4 +1,4 @@
-<h2><%= @team.team_name %></h2>
+<h2><%= @team.team_name %> <%= link_to 'Edit Team', edit_team_path(@team) if @team.president?(current_user) %></h2>
 <%= image_tag @team.team_logo_url %><br>
 <%= @team.recognition %>
 
@@ -11,5 +11,16 @@
       <div class="form-group"><%= hidden_field_tag(:team_id, @team.id) %></div>
       <%= submit_tag 'Invite Team Member', class: 'col-sm-3 btn btn-primary form-group' %>
     </div>
+  <% end %>
+</div>
+
+<div>
+  <h3>Invited Members</h3>
+  <% @team.users.each do |member|%>
+    <div id=<%=member.id%> >
+      <%= member.email %> 
+      <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put %> 
+    </div>
+    </br>
   <% end %>
 </div>

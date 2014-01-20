@@ -28,6 +28,8 @@ feature "Team pres creates team profile" do
 
     expect(page).to have_content("Your profile was created successfully")
     visit root_path
+    click_on "Edit Team"
+
     expect(page).to have_content("Edit Team")
 
     fill_in "Team Name", with: team.team_name
