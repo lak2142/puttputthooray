@@ -10,5 +10,7 @@ describe Team do
 
   it { should validate_presence_of :college }
 
+  describe '.incomplete?' do
 
+  end
 end
