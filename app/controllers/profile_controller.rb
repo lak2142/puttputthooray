@@ -41,8 +41,13 @@ class ProfileController < AppController
     @user = current_user
     @user_profile = UserProfile.new(user_profile_params)
     @user_profile.user_id = current_user.id
-    flash[:notice] = "Your profile was created successfully" if @user_profile.save
-    redirect_to profile_path(@user_profile)
+    if @user_profile.save
+      flash[:notice] = "Your profile was created successfully" if @user_profile.save
+      redirect_to profile_path(@user_profile)
+    else
+      flash[:notice] = "Something went wrong updating your profile"
+      render :show
+    end
   end
 
   def update
