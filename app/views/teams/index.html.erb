@@ -3,6 +3,6 @@
 
 <h3>Teams already invited</h3>
 <% @teams.each do |team| %>
-  <%= team.team_name %><br />
+  <%= team.college.name %> - <%= team.team_name %><br />
 <% end %>
 
