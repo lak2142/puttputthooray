@@ -8,11 +8,12 @@ class Team < ActiveRecord::Base
 
   attr_accessor :email
 
-  mount_uploader :test_photo, TeamLogoUploader
+  mount_uploader :team_logo, TeamLogoUploader
 
   # test this
 
   def incomplete?
     true
   end
+
 end

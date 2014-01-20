@@ -11,7 +11,7 @@ describe TeamLogoUploader do
   end
 
   let(:path) do
-    Rails.root.join('spec/file_fixtures/valid_test_image.jpg')
+    Rails.root.join('spec/file_fixtures/default_photo.jpg')
   end
 
   before do

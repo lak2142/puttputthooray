@@ -32,10 +32,10 @@ feature "Team pres creates team profile" do
 
     fill_in "Team Name", with: team.team_name
     attach_file 'Team logo',
-    Rails.root.join('spec/file_fixtures/valid_test_image.jpg')
+    Rails.root.join('spec/file_fixtures/default_photo.jpg')
     click_on "Submit"
     expect(page).to have_content(team.team_name)
-    expect(Team.last.test_photo.url).to be_present
+    expect(Team.last.team_logo.url).to be_present
   end
 
   scenario 'pres logs in when team profile and personal profile are both created' do

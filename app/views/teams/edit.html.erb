@@ -4,6 +4,6 @@
 
 <%= simple_form_for @team do |f|%>
   <%=f.input :team_name, label: "Team Name" %>
-  <%= f.file_field :team_logo %>
+  <%= f.input :team_logo, as: :file %>
   <%=f.submit "Submit"%>
 <% end %>
