@@ -9,7 +9,7 @@
       <div class="form-group"><%= text_field_tag 'email', nil, type: "email", class: "form-control", id: "email", placeholder: "Enter email address" %></div>
       <div class="form-group"><%= hidden_field_tag(:role_type_id, RoleType.MEMBER.id) %></div>
       <div class="form-group"><%= hidden_field_tag(:team_id, @team.id) %></div>
-      <%= submit_tag 'Invite Team Member', class: 'col-sm-3 btn btn-primary form-group' %>
+      <%= submit_tag 'Invite Team Member', class: 'col-sm-6 btn btn-primary form-group' %>
     </div>
   <% end %>
 </div>
@@ -19,7 +19,7 @@
   <% @team.users.each do |member|%>
     <div id=<%=member.id%> >
       <%= member.email %> 
-      <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put %> 
+      <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put if @team.president?(current_user) %> 
     </div>
     </br>
   <% end %>
