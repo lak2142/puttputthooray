@@ -26,7 +26,6 @@ feature "Team pres creates team profile" do
 
     click_on "Save Profile"
 
-    expect(page).to have_content("Your profile was created successfully")
     visit root_path
     click_on "Edit Team"
 

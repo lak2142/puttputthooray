@@ -1,10 +1,15 @@
-<p>Your profile was created successfully</p>
+<h1>Edit Team</h1>
 
-<h1>Edit Team<h1>
-
-<%= simple_form_for @team do |f|%>
+<%= simple_form_for @team, html:{class: "form-horizontal"} do |f|%>
+  <div class="form-group row">
   <%=f.input :team_name, label: "Team Name" %>
-  <%= f.input :team_logo, as: :file %>
+  </div>
+  <div class = "form-group row">
+  <%=f.input :team_logo, as: :file %>
+  </div>
+  <div class = "form-group row">
   <%=f.input :recognition, label: "Recognition" %>
+  </div>
+  <div class = "form-group row">
   <%=f.submit "Submit"%>
 <% end %>
