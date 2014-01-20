@@ -1,5 +1,7 @@
 class ProfileController < AppController
   skip_before_action :redirect_if_profile_incomplete
+  skip_before_action :redirect_if_team_incomplete, except: [:show]
+
 
   def show
     if current_user.is_course_manager?

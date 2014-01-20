@@ -20,12 +20,10 @@ feature "Team pres removes player" do
 
   scenario "pres removes player" do
     expect(page).to have_content(player1.email)
-    save_and_open_page
     within "##{player1.id}" do
-    click_on "remove member" 
-  end
+      click_on "remove member" 
+    end
     expect(page).to_not have_content(player1.email)
-
   end
 
 end

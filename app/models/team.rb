@@ -10,10 +10,13 @@ class Team < ActiveRecord::Base
 
   mount_uploader :team_logo, TeamLogoUploader
 
-  # test this
-
   def incomplete?
-    true
+    # must add atleast one member
+    users.length <= 1
+  end
+
+  def president?(user)
+    user.team == self && user.has_president_privilege?
   end
 
 end

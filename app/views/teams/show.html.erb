@@ -1,4 +1,4 @@
-<h2><%= @team.team_name %></h2>
+<h2><%= @team.team_name %> <%= link_to 'Edit Team', edit_team_path(@team) if @team.president?(current_user) %></h2>
 <%= image_tag @team.team_logo_url %><br>
 <%= @team.recognition %>
 
@@ -19,7 +19,7 @@
   <% @team.users.each do |member|%>
     <div id=<%=member.id%> >
       <%= member.email %> 
-      <%= link_to "remove member", update_team_membership_path(member), method: :put%> 
+      <%= link_to "remove member", update_team_membership_path(member_id: member.id), method: :put %> 
     </div>
     </br>
   <% end %>
