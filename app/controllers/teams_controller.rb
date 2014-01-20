@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  
+
   def index
     @teams = Team.all
   end
@@ -44,6 +44,6 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:college_id, :email, :team_name, :recognition)
+    params.require(:team).permit(:college_id, :email, :team_name, :team_logo, :recognition)
   end
 end
