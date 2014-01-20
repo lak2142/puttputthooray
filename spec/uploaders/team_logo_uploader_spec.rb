@@ -7,7 +7,7 @@ describe TeamLogoUploader do
 
   let(:uploader) do
     TeamLogoUploader.new(FactoryGirl.build(:team),
-      :test_photo)
+      :team_logo)
   end
 
   let(:path) do
