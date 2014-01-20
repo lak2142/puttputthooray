@@ -3,6 +3,9 @@ Puttputthooray::Application.routes.draw do
 
   get 'profile/my_profile' => "profile#my_profile"
 
+
+  put 'update_team_membership' => "team_memberships#update"
+
   resources :profile do
     collection do
       get :add_user
