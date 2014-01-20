@@ -3,7 +3,14 @@
 
 <h1>Teams already invited</h1>
 <% @teams.each do |team| %>
- <h3> <%= team.college.name %> - <%= link_to "#{team.team_name}", team_path(team) %> </h3><br />
-  <%= image_tag team.team_logo_url %><br />
+  <div class="row">
+    <div class="col-sm-3">
+      <%= image_tag team.team_logo_url %><br />
+    </div>
+    <div class="col-sm-3">
+      <h3> <%= team.college.name %> - <%= link_to "#{team.team_name}", team_path(team) %> </h3>
+    </div>
+  </div>
+  </br>
 <% end %>
 
