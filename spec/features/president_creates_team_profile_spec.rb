@@ -28,17 +28,28 @@ feature "Team pres creates team profile" do
 
     expect(page).to have_content("Your profile was created successfully")
     visit root_path
-    save_and_open_page
     expect(page).to have_content("Edit Team")
 
     fill_in "Team Name", with: team.team_name
 
     click_on "Submit"
 
-    expect(page).to have_content("Your team was successfully edited")
     expect(page).to have_content("Add players")
   end
 
-  scenario 'pres logs in when team profile and personal profile are both created'
+  scenario 'pres logs in when team profile and personal profile are both created' do
+    college = FactoryGirl.create(:college)
+    team = FactoryGirl.create(:team)
+    team.college = college
+    user = FactoryGirl.create(:user)
+    user.team = team
+    user.add_role RoleType.PRESIDENT.code
+    user.save
+    user_profile = FactoryGirl.create(:user_profile, user: user)
+    sign_in_as(user)
+
+    expect(page).to have_content(user_profile.first_name)
+
+  end
 
 end

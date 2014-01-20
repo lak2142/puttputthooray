@@ -1,0 +1,8 @@
+<p>Your profile was created successfully</p>
+
+<h1>Edit Team<h1>
+
+<%= simple_form_for @team do |f|%>
+  <%=f.input :team_name, label: "Team Name" %>
+  <%=f.submit "Submit"%>
+<% end %>
