@@ -34,7 +34,7 @@ feature "Team pres creates team profile" do
 
     click_on "Submit"
 
-    expect(page).to have_content("Add players")
+    expect(page).to have_content(team.team_name)
   end
 
   scenario 'pres logs in when team profile and personal profile are both created' do

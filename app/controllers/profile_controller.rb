@@ -29,10 +29,20 @@ class ProfileController < AppController
           @error = "Oops! Something went wrong, please try again in few minutes"
         end
         flash[:alert] = @error
+        if team = Team.find(params[:team_id])
+          redirect_to team_path(team)
+        end
       else
         role_type = RoleType.where(id: params[:role_type_id]).first
         user.add_role role_type.code
-        flash[:notice] = "Successfully sent the invitation!"
+        if team = Team.find(params[:team_id])
+          user.team = team
+          user.save
+          flash[:notice] = "Team member added successfully"
+          redirect_to team_path(team)
+        else
+          flash[:notice] = "Successfully sent the invitation!"
+        end
       end
     end
   end
