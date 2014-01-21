@@ -2,6 +2,12 @@
 
 <%= form_for(@team, class: "form-horizontal") do |f|%>
   <div class="form-group row">
+    <%= f.label :team_name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%=f.text_field :team_name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
     <%= f.label :team_logo, class: 'col-sm-2 control-label' %>
     <div class="col-sm-3">
       <%=f.file_field :team_logo, class: "form-control" %>

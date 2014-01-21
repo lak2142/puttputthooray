@@ -4,10 +4,12 @@ feature "Team pres adds team members" do
   let(:college) { FactoryGirl.create(:college) }
   let(:team) {  FactoryGirl.create(:team) }
   let(:president) { FactoryGirl.create(:user)}
+  let(:user_profile) { FactoryGirl.create(:user_profile, user: president)}
   let(:email) { 'newgolfer@mail.com'}
 
   before(:each) do
     team.college = college
+    user_profile
     president.team = team
     president.add_role RoleType.PRESIDENT.code
     president.save

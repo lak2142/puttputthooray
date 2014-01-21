@@ -2,13 +2,13 @@ require 'spec_helper'
 
 feature 'admin creates a Team' do
   let(:admin) { FactoryGirl.create(:admin) }
+  let!(:user_profile) { FactoryGirl.create(:user_profile, user: admin) }
   let!(:college) { FactoryGirl.create(:college, name: 'Boston College')}
 
   scenario 'admin creates new team' do
     president_email = 'johnthepresident@watson.com'
     ActionMailer::Base.deliveries = []
     sign_in_as(admin)
-    user_profile = FactoryGirl.create(:user_profile, user: admin)
     visit teams_path
     click_on 'Create New Team'
     select 'Boston College', from: 'College'

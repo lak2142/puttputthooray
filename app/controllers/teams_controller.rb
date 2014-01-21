@@ -1,7 +1,7 @@
 class TeamsController < AppController
   skip_before_action :authenticate_user!, only: [:index]
   skip_before_action :redirect_if_profile_incomplete, only: [:index]
-  skip_before_action :redirect_if_team_incomplete, only: [:index]
+  skip_before_action :redirect_if_team_incomplete
 
   def index
     @teams = Team.all

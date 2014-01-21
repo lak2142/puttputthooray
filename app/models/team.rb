@@ -21,4 +21,8 @@ class Team < ActiveRecord::Base
     user.team == self && user.has_president_privilege?
   end
 
+  def can_admin?(user)
+    president?(user) || user.has_admin_privilege?
+  end
+
 end

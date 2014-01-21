@@ -26,16 +26,15 @@ feature "Team pres creates team profile" do
 
     click_on "Save Profile"
 
-    visit root_path
+    visit team_path(team)
     click_on "Edit Team"
 
     expect(page).to have_content("Edit Team")
 
-    fill_in "Team Name", with: team.team_name
+    fill_in "Team name", with: team.team_name
     attach_file 'Team logo',
     Rails.root.join('spec/file_fixtures/default_photo.jpg')
     click_on "Submit"
-    save_and_open_page
     expect(page).to have_content(team.team_name)
     expect(Team.last.team_logo.url).to be_present
   end

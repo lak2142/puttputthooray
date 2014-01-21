@@ -9,7 +9,6 @@ feature 'public views all teams' do
 
     expect(page).to have_content(team_1.team_name)
     expect(page).to have_content(team_2.team_name)
-    save_and_open_page
   end
 
 end

@@ -4,9 +4,11 @@ feature "Team pres adds recognition to team profile" do
     let(:college) { FactoryGirl.create(:college) }
   let(:team) {  FactoryGirl.create(:team) }
   let(:president) { FactoryGirl.create(:user)}
+  let(:user_profile) { FactoryGirl.create(:user_profile, user: president)}
 
   before(:each) do
     team.college = college
+    user_profile
     president.team = team
     president.add_role RoleType.PRESIDENT.code
     president.save
@@ -20,6 +22,6 @@ feature "Team pres adds recognition to team profile" do
     expect(team.reload.recognition).to eql('some recognition')
     expect(page).to have_content 'some recognition'
 
-  end    
+  end
 
-end  
+end
