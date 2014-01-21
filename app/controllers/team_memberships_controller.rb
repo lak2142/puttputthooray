@@ -2,6 +2,7 @@ class TeamMembershipsController < AppController
 
   def update
     member = User.find(params[:member_id])
+    @team = member.team
     member.team = nil
 
     if member.save
@@ -9,7 +10,7 @@ class TeamMembershipsController < AppController
     else
       flash[:notice] = "Something went wrong, please try again"
     end
-    redirect_to team_path(current_user.team)
+    redirect_to team_path(@team)
   end
 
 end
