@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140120170126) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "teams", force: true do |t|
-    t.string   "team_name"
+    t.string   "team_name",   null: false
     t.integer  "college_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
